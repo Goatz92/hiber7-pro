@@ -13,14 +13,18 @@ public class App {
 
     public static void main(String[] args) {
 
-        Teacher teacher = new Teacher(null, "Alice", "W.", null);
-        Course java = new Course(null, "Java", null);
-        teacher.addCourse(java);
+//        Teacher teacher = new Teacher(null, "Alice", "W.", null);
+//        Course java = new Course(null, "Java", null);
+//        teacher.addCourse(java);
 
         em.getTransaction().begin();
 
-        em.persist(teacher);
-        em.persist(java);
+        Teacher alice = em.find(Teacher.class, 1L);
+        alice.setLastname("Wonderland");
+        em.merge(alice);
+
+//        em.persist(teacher);
+//        em.persist(java);
 
         em.getTransaction().commit();
 
